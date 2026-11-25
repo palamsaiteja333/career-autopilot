@@ -25,16 +25,16 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 |---|---|
 | [Product vision](docs/01-product/product-vision.md) | Baseline |
 | [Market and competitive analysis](docs/01-product/competitive-analysis.md) | Initial research |
-| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.4; approved design targets |
-| [Functional requirements](docs/01-product/functional-requirements.md) | v0.3; both agent defaults finalized |
+| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.5; approved design targets |
+| [Functional requirements](docs/01-product/functional-requirements.md) | v0.4; both agent defaults finalized |
 | [User stories](docs/01-product/user-stories.md) | v0.3; both agent story sets finalized |
 | [Job Search Agent requirements](docs/01-product/job-search-agent-requirements.md) | v1.1; agreed defaults and timezone |
-| [Job Application Agent requirements](docs/01-product/job-application-agent-requirements.md) | v1.1; agreed defaults and timezone |
+| [Job Application Agent requirements](docs/01-product/job-application-agent-requirements.md) | v1.2; agreed defaults and 24h approval |
 | [Non-functional requirements](docs/01-product/non-functional-requirements.md) | v1.0; approved targets, unmeasured |
 | [AI evaluation plan](docs/01-product/evaluation-plan.md) | v1.0; approved, not executed |
 | [High-level architecture](docs/02-architecture/high-level-design.md) | v1.0; approved, feasibility pending |
-| [Agent workflows and lifecycles](docs/02-architecture/agent-workflows.md) | v0.1; proposed |
-| [Low-level design](docs/02-architecture/low-level-design.md) | v0.1; proposed |
+| [Agent workflows and lifecycles](docs/02-architecture/agent-workflows.md) | v1.0; approved, feasibility pending |
+| [Low-level design](docs/02-architecture/low-level-design.md) | v1.0; approved, feasibility pending |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Issues created; native milestones pending |
 
 ## Development principles
