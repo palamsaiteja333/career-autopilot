@@ -4,7 +4,7 @@
 
 An open-source, production-oriented agentic AI career automation platform for discovering relevant jobs, preparing accurate applications and managing the career journey with human oversight.
 
-> Status: product discovery / design. No application code or deployed infrastructure yet.
+> Status: Week 1 design approved; Week 2 local-first engineering foundation underway. No deployed infrastructure.
 
 ## Initial product
 
@@ -15,9 +15,9 @@ An open-source, production-oriented agentic AI career automation platform for di
 
 Future modules may support recruiter communication, professional content and interview preparation.
 
-## Proposed technology
+## Approved technology baseline
 
-Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedrock and AgentCore, DynamoDB, S3, AWS CDK, GitHub Actions, OpenTelemetry and CloudWatch. Specific hosting, persistence and security choices will be validated through architecture decision records (ADRs).
+Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedrock and AgentCore, DynamoDB, S3, AWS CDK, GitHub Actions, OpenTelemetry and CloudWatch. Hosting, persistence and security decisions are recorded in approved ADRs; feasibility remains to be tested.
 
 ## Documentation
 
@@ -38,7 +38,7 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 | [Data model and persistence](docs/02-architecture/data-model.md) | v1.0; approved, feasibility pending |
 | [Security and threat model](docs/04-security/threat-model.md) | v1.0; approved, feasibility pending |
 | [Architecture Decision Records](docs/03-decisions/README.md) | v1.0; 12 accepted decisions, feasibility pending |
-| [Implementation backlog](docs/07-planning/implementation-backlog.md) | v0.1; 32 work items, review pending |
+| [Implementation backlog](docs/07-planning/implementation-backlog.md) | v1.0; 32 approved work items |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Issues created; native milestones pending |
 
 ## Development principles
