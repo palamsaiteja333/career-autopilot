@@ -1,6 +1,6 @@
 # Job Application Agent — Functional requirements
 
-Version: 1.0 | Date: 2026-11-25 | Status: agreed product defaults; implementation not started
+Version: 1.1 | Date: 2026-11-25 | Status: agreed product defaults; implementation not started
 
 Parent: [PRD](product-requirements.md) · [Functional requirements](functional-requirements.md) · [User stories](user-stories.md) · [CA-002](https://github.com/palamsaiteja333/career-autopilot/issues/2)
 
@@ -53,7 +53,7 @@ Selection → quota and duplicate check → validate opportunity → load origin
 
 ### Daily quota
 
-Proposed interpretation: count the first accepted preparation of each unique application in the candidate's configured local calendar day, not submissions or attempts. Reserve the slot atomically before work begins; accepted preparations count even if later cancelled or failed. Reopening/resuming the same draft, retries, and duplicate clicks do not consume another slot. A sixth new preparation is rejected with a visible quota notice; it is not silently queued or auto-started tomorrow. Existing drafts may still be reviewed, resumed or submitted with valid approval after the quota is reached. Timezone must be configured before enforcing the calendar-day boundary; no specific timezone has been chosen in this spec.
+Proposed interpretation: count the first accepted preparation of each unique application in the candidate's configured local calendar day, not submissions or attempts. Reserve the slot atomically before work begins; accepted preparations count even if later cancelled or failed. Reopening/resuming the same draft, retries, and duplicate clicks do not consume another slot. A sixth new preparation is rejected with a visible quota notice; it is not silently queued or auto-started tomorrow. Existing drafts may still be reviewed, resumed or submitted with valid approval after the quota is reached. Default timezone: America/Toronto; use local calendar-day boundaries including 23/25-hour DST days, and UTC instants for stored events.
 
 ### Candidate facts and documents
 
@@ -95,4 +95,4 @@ Output: application ID, job ID, status, quota status, resume reference/checksum,
 
 ## 8. Decisions deferred
 
-Candidate timezone, precise approval lifetime, answer retention/scope policy, form adapter contracts and authorization, live platform support, dashboard UX, document format, persistence, LangGraph graph/checkpoints, MCP tools/skills, AWS infrastructure, latency/cost and operational SLOs. The quota accounting, safe pre-approval inspection and answer-scope rules above are proposed operational interpretations of agreed preferences, not measured behavior. No real resume, candidate answers, live applications, scheduled jobs or implementation code are included.
+Precise approval lifetime, answer retention/scope policy, form adapter contracts and authorization, live platform support, dashboard UX, document format, persistence, LangGraph graph/checkpoints, MCP tools/skills, AWS infrastructure, implementation and verification of approved latency/cost and operational SLOs. The quota accounting, safe pre-approval inspection and answer-scope rules above are proposed operational interpretations of agreed preferences, not measured behavior. No real resume, candidate answers, live applications, scheduled jobs or implementation code are included.
