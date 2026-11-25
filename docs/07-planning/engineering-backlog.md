@@ -52,6 +52,7 @@ Labels: documentation
 
 - Identify access boundaries, profile/document versioning, job identity, workflow state, approval ledger, deletion and attack surfaces.
 - Acceptance: documented data ownership, encryption, authorization, privacy-safe telemetry and threat mitigations.
+- Draft deliverables: [data model v0.1](../02-architecture/data-model.md) and [threat model v0.1](../04-security/threat-model.md); owner review pending. Backup retention edge case, IAM, deletion and checkpoint fencing remain feasibility gates.
 
 ### [CA-007 — Record architecture decisions and prioritize implementation backlog](https://github.com/palamsaiteja333/career-autopilot/issues/7)
 Labels: documentation
