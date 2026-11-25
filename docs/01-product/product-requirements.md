@@ -41,7 +41,7 @@ Unauthorized website automation, bulk unsolicited applications, CAPTCHA bypass, 
 | Approval | 100% of external submissions have valid approval for exact destination and payload version in tests. |
 | Duplicate submissions | Zero duplicates in retry/crash/concurrent approval tests; ambiguous external responses require reconciliation. |
 
-These are provisional targets, not achieved results or production guarantees. Define datasets, coverage and performance budgets during non-functional design. Safety invariants are release blockers even when the aggregate accuracy target is met.
+These are provisional targets, not achieved results or production guarantees. See [non-functional requirements](non-functional-requirements.md) and [evaluation plan](evaluation-plan.md) for proposed workload, SLOs, dataset sizes, metric definitions and release gates; owner review and measurement remain pending. Safety invariants are release blockers even when the aggregate accuracy target is met.
 
 ## 6. Risks and constraints
 Source permissions and geographic eligibility can be ambiguous. Job descriptions are untrusted and may contain prompt injections. External systems can change forms or return ambiguous responses. Model costs, latency, regional availability, retention and personally identifiable information must be managed. Public GitHub stores synthetic data only.
