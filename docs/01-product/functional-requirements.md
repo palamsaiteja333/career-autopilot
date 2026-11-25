@@ -1,6 +1,6 @@
 # Functional requirements
 
-Version 0.1 | Draft | MoSCoW: Must / Should. IDs remain stable for traceability.
+Version 0.2 | Job Search Agent defaults finalized; remaining requirements draft | MoSCoW: Must / Should. IDs remain stable for traceability.
 
 | ID | Priority | Requirement | Acceptance criterion |
 |---|---|---|---|
@@ -10,7 +10,7 @@ Version 0.1 | Draft | MoSCoW: Must / Should. IDs remain stable for traceability.
 | FR-004 | Must | Search permitted sources on demand and normalize results. | Each record includes a source, original link, observation time and availability status. |
 | FR-005 | Must | Deduplicate jobs within and across runs. | Repeated provider ID or canonical link is not stored as another job; ambiguous matches are not merged silently. |
 | FR-006 | Must | Rank jobs with evidence-backed explanations and hard eligibility filters. | Ineligible roles are excluded from eligible results; unverified criteria are labeled. |
-| FR-007 | Should | Run configurable scheduled searches and notify about new matches. | A scheduled run delivers results or a visible failure without repeated notifications for the same event. |
+| FR-007 | Must | Run configurable scheduled searches (default every 24 hours) and notify about new matches. | A scheduled run delivers results or a visible failure without repeated notifications for the same event. |
 | FR-008 | Must | Select a job and prepare grounded application materials. | All factual claims map to verified profile facts; unsupported claims are blocked. |
 | FR-009 | Must | Map supported form questions and identify missing or ambiguous answers. | Mandatory unknowns trigger an explicit request, not a guessed value. |
 | FR-010 | Must | Persist and resume human input workflows. | After restart the same workflow can resume with authenticated answers. |
@@ -23,4 +23,9 @@ Version 0.1 | Draft | MoSCoW: Must / Should. IDs remain stable for traceability.
 | FR-017 | Must | Provide privacy-safe operational visibility. | Correlated runs report status, latency, token/cost estimates, tool errors and approval events without raw private payloads. |
 | FR-018 | Must | Allow profile/document deletion and workflow cancellation subject to stated retention. | Deleted profile data is not retrieved in later work; retained audit metadata follows documented policy. |
 
-Next: review priorities, design APIs and state transitions, and define measurable non-functional targets.
+## Detailed agent requirements
+
+- [Job Search Agent v1.0](job-search-agent-requirements.md): agreed defaults, JS-001–016, evidence and eligibility rules, result contract and acceptance scenarios. Extends FR-002–007, FR-015–018.
+- Job Application Agent: detailed requirements pending.
+
+Next: finalize application requirements, design APIs and state transitions, and define measurable non-functional targets.
