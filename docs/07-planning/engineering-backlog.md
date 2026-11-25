@@ -45,7 +45,7 @@ Labels: documentation
 
 - Define inputs, outputs, LangGraph nodes, skills, MCP tool contracts, conditional routes and human interrupts.
 - Acceptance: trace discovery and application scenarios including cancellation, changed approval and unknown submission outcome.
-- Draft deliverables: [agent workflows v0.1](../02-architecture/agent-workflows.md) and [LLD v0.1](../02-architecture/low-level-design.md); owner review pending.
+- Approved deliverables: [agent workflows v1.0](../02-architecture/agent-workflows.md) and [LLD v1.0](../02-architecture/low-level-design.md); issue closed for design completion. Feasibility remains a deployment gate.
 
 ### [CA-006 — Design data model and threat model](https://github.com/palamsaiteja333/career-autopilot/issues/6)
 Labels: documentation
@@ -61,4 +61,4 @@ Labels: documentation
 
 ## GitHub setup notes
 
-The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002, CA-003 and CA-004 are closed; CA-005 low-level design is the current activity. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
+The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002 through CA-005 are closed; CA-006 data model and threat modeling is the current activity. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
