@@ -38,6 +38,7 @@ Labels: documentation
 
 - Compare AgentCore runtime and API hosting alternatives, model/tool boundaries, queues, state, deployment and telemetry.
 - Acceptance: Mermaid component and request-flow diagrams with failure paths and service rationale.
+- [HLD v0.1](../02-architecture/high-level-design.md) committed; owner architecture review and regional pricing feasibility pending.
 
 ### [CA-005 — Design agent lifecycles and interfaces](https://github.com/palamsaiteja333/career-autopilot/issues/5)
 Labels: documentation
