@@ -1,6 +1,6 @@
 # Product requirements document (PRD)
 
-Version: 0.3 | Date: 2026-11-25 | Status: initial design baseline, pending review of provisional targets and integration feasibility
+Version: 0.4 | Date: 2026-11-25 | Status: approved requirements baseline; integration feasibility and measurement pending
 
 ## 1. Objective
 Reduce repetitive job search and application work without sacrificing relevance, accuracy, privacy or user control. Build an extensible platform for future career agents and an end-to-end engineering learning case study.
@@ -29,9 +29,9 @@ Persist workflow state, pending approvals, search results and application status
 ## 4. Out of scope
 Unauthorized website automation, bulk unsolicited applications, CAPTCHA bypass, inferred legal/work eligibility, unapproved external submission, live LinkedIn messaging/posting, multi-user SaaS, mobile apps and unrelated personal agents. Mock ATS automation is in scope for learning and testing; live submission is conditional on access and permission.
 
-## 5. Proposed release targets
+## 5. Approved release targets
 
-| Measure | Proposed target and method |
+| Measure | Approved target and method |
 |---|---|
 | Relevance | >=80% precision@10 on user-reviewed search results; report sample size and missing results separately. |
 | Effort reduction | >=70% reduction in active discovery time against a measured manual baseline across comparable searches. |
@@ -41,13 +41,13 @@ Unauthorized website automation, bulk unsolicited applications, CAPTCHA bypass, 
 | Approval | 100% of external submissions have valid approval for exact destination and payload version in tests. |
 | Duplicate submissions | Zero duplicates in retry/crash/concurrent approval tests; ambiguous external responses require reconciliation. |
 
-These are provisional targets, not achieved results or production guarantees. See [non-functional requirements](non-functional-requirements.md) and [evaluation plan](evaluation-plan.md) for proposed workload, SLOs, dataset sizes, metric definitions and release gates; owner review and measurement remain pending. Safety invariants are release blockers even when the aggregate accuracy target is met.
+These are approved design targets, not achieved results or production guarantees. See [non-functional requirements v1.0](non-functional-requirements.md) and [evaluation plan v1.0](evaluation-plan.md) for metric definitions, datasets and release gates. Approved operating defaults: single user, USD 50/month cloud and paid integrations target, 120 s search p95, 99.5% core API availability SLO, America/Toronto timezone for quota and schedule configuration. Measurement remains pending. Safety invariants are release blockers even when the aggregate accuracy target is met.
 
 ## 6. Risks and constraints
 Source permissions and geographic eligibility can be ambiguous. Job descriptions are untrusted and may contain prompt injections. External systems can change forms or return ambiguous responses. Model costs, latency, regional availability, retention and personally identifiable information must be managed. Public GitHub stores synthetic data only.
 
 ## 7. Open decisions
-Choose first authorized source adapters, discovery notification channel, schedule timezone/start time, candidate quota timezone, approval lifetime, answer retention/scope and data retention/deletion policy, cost ceiling, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
+Choose first authorized source adapters, discovery notification channel, schedule anchor time, approval lifetime, answer scope and implementation of approved retention/deletion policy, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
 
 ## 8. Future roadmap
 Networking and recruiter communication, professional branding/content, interview preparation and career intelligence. Keep extension interfaces generic but defer new agents until the MVP is measured and reliable.
