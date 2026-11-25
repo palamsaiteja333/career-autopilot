@@ -1,6 +1,6 @@
 # Job Application Agent — Functional requirements
 
-Version: 1.1 | Date: 2026-11-25 | Status: agreed product defaults; implementation not started
+Version: 1.2 | Date: 2026-11-25 | Status: agreed product defaults; implementation not started
 
 Parent: [PRD](product-requirements.md) · [Functional requirements](functional-requirements.md) · [User stories](user-stories.md) · [CA-002](https://github.com/palamsaiteja333/career-autopilot/issues/2)
 
@@ -61,6 +61,8 @@ The original resume is immutable for a preparation; user may explicitly select a
 
 ### Approval and recovery
 
+Approved expiry: individual approval is valid for at most 24 elapsed hours from its recorded grant time, unless revoked or invalidated earlier. Expiry is checked immediately before dispatch; renewal requires a fresh explicit individual approval.
+
 Approval is not general delegation. Bind it to exact reviewed payload, attachment versions, employer/destination and application identity. Recheck policy, current job and approval immediately before sending. Rejection/cancellation before execution blocks sending. If a form changes or requires a new question, return to input/review. After uncertain external send, record unknown outcome and reconcile through reliable authorized evidence or human confirmation; retry only when safe and still authorized. Manual handoff is not submission. CAPTCHA and unsupported forms require human action.
 
 ## 5. Conceptual input/output contract (not API schema)
@@ -95,4 +97,4 @@ Output: application ID, job ID, status, quota status, resume reference/checksum,
 
 ## 8. Decisions deferred
 
-Precise approval lifetime, answer retention/scope policy, form adapter contracts and authorization, live platform support, dashboard UX, document format, persistence, LangGraph graph/checkpoints, MCP tools/skills, AWS infrastructure, implementation and verification of approved latency/cost and operational SLOs. The quota accounting, safe pre-approval inspection and answer-scope rules above are proposed operational interpretations of agreed preferences, not measured behavior. No real resume, candidate answers, live applications, scheduled jobs or implementation code are included.
+Answer retention/scope policy, form adapter contracts and authorization, live platform support, dashboard UX, document format, persistence, LangGraph graph/checkpoints, MCP tools/skills, AWS infrastructure, implementation and verification of approved latency/cost and operational SLOs. The quota accounting, safe pre-approval inspection and answer-scope rules above are proposed operational interpretations of agreed preferences, not measured behavior. No real resume, candidate answers, live applications, scheduled jobs or implementation code are included.
