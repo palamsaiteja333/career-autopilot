@@ -1,6 +1,6 @@
 # Product requirements document (PRD)
 
-Version: 0.1 | Date: 2026-11-25 | Status: initial design baseline, pending review of provisional targets and integration feasibility
+Version: 0.2 | Date: 2026-11-25 | Status: initial design baseline, pending review of provisional targets and integration feasibility
 
 ## 1. Objective
 Reduce repetitive job search and application work without sacrificing relevance, accuracy, privacy or user control. Build an extensible platform for future career agents and an end-to-end engineering learning case study.
@@ -12,6 +12,8 @@ Initial user: an individual technical job seeker. When searching, find active op
 
 ### Discovery
 Accept natural-language and structured preferences; search permitted sources on demand and on a configurable schedule; normalize postings and preserve provenance, location, remote eligibility, timestamps and original links; deduplicate; assess relevance against the candidate profile with evidence; rank results; flag unavailable or unverified postings; display and notify about results.
+
+Agreed discovery defaults: AI Engineer, Forward Deployed Engineer, Applied AI Engineer, Agentic AI Engineer, AI Software Engineer and AI Agents Engineer; Canada-wide and Canada-eligible remote; company career pages, Greenhouse, Lever and web search; rolling 48-hour freshness; every 24 hours; at most 10 verified ranked results per run; both on-demand natural-language and saved-preference searches. See [Job Search Agent functional requirements](job-search-agent-requirements.md).
 
 ### Candidate profile
 Allow the user to upload and version resumes and maintain verified experience, preferences and approved answers. Store answer provenance and scope. Unknown, expired or sensitive answers must not be inferred. The user can update or delete profile information.
@@ -43,7 +45,7 @@ These are provisional targets, not achieved results or production guarantees. De
 Source permissions and geographic eligibility can be ambiguous. Job descriptions are untrusted and may contain prompt injections. External systems can change forms or return ambiguous responses. Model costs, latency, regional availability, retention and personally identifiable information must be managed. Public GitHub stores synthetic data only.
 
 ## 7. Open decisions
-Choose first authorized source adapters, notification channel, search cadence, data retention/deletion policy, cost ceiling, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
+Choose first authorized source adapters, notification channel, schedule timezone/start time, data retention/deletion policy, cost ceiling, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
 
 ## 8. Future roadmap
 Networking and recruiter communication, professional branding/content, interview preparation and career intelligence. Keep extension interfaces generic but defer new agents until the MVP is measured and reliable.
