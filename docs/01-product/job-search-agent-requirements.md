@@ -1,6 +1,6 @@
 # Job Search Agent — Functional requirements
 
-Version: 1.0 | Date: 2026-11-25 | Status: agreed search defaults; implementation not started
+Version: 1.1 | Date: 2026-11-25 | Status: agreed search defaults; implementation not started
 
 Parent: [PRD](product-requirements.md) · [Functional requirements](functional-requirements.md) · [User stories](user-stories.md) · [CA-002](https://github.com/palamsaiteja333/career-autopilot/issues/2)
 
@@ -20,7 +20,7 @@ Find current, relevant opportunities with direct job/application links, reduce r
 | Maximum ranked results | 10 per run |
 | Execution modes | Both natural-language on-demand requests and saved preferences (including scheduled execution) |
 
-All defaults are configurable. An explicit on-demand override affects only that run unless the user elects to save it. No salary, seniority, employment type or employer filter is assumed. Schedule time, timezone and notification channel are configuration decisions, not yet selected.
+All defaults are configurable. An explicit on-demand override affects only that run unless the user elects to save it. No salary, seniority, employment type or employer filter is assumed. Default timezone is America/Toronto. The 24-hour cadence is elapsed time; UTC storage avoids DST duplicate/missed triggers, and displayed local execution time may shift at DST. Schedule anchor time and discovery notification channel remain undecided.
 
 ## 3. Functional requirements
 
@@ -75,9 +75,9 @@ A search run includes: run ID, trigger type, effective configuration/version, st
 - [ ] At most 10 ranked results with direct links; fewer results and zero-results cases tested.
 - [ ] Daily schedule, on-demand overrides, trigger deduplication and new-match notification behavior tested.
 - [ ] Partial failures, all-source failure, missing resume, unknown timestamps and prompt injection tested.
-- [ ] Precision@10 evaluated against candidate-reviewed labels; PRD target remains provisional (>=80%, report sample size and returned-result count).
+- [ ] Precision@10 evaluated against candidate-reviewed labels; PRD target is approved but unmeasured (>=80%, report sample size and returned-result count).
 - [ ] No private candidate data in the public repository, source requests or raw telemetry.
 
 ## 8. Design decisions deferred
 
-Actual source adapters, search provider and licensing, company discovery/catalog strategy, query expansion, source pagination and budgets, scheduling timezone/start time, notification channel, scoring weights, persistence, workflow nodes, MCP contracts, AWS service choices and operational SLOs. The four source categories are agreed; their specific access methods and availability must be verified before live integration. No live search, schedule, infrastructure or implementation has been created by this document.
+Actual source adapters, search provider and licensing, company discovery/catalog strategy, query expansion, source pagination and budgets, schedule anchor time, notification channel, scoring weights, persistence, workflow nodes, MCP contracts, AWS service choices and operational SLO implementation. The four source categories are agreed; their specific access methods and availability must be verified before live integration. No live search, schedule, infrastructure or implementation has been created by this document.
