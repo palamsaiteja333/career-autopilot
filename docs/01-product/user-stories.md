@@ -23,4 +23,4 @@ See [Job Search Agent v1.1](job-search-agent-requirements.md#6-user-stories-and-
 
 ## Detailed application stories
 
-See [Job Application Agent v1.1](job-application-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JA-US-01–08, covering explicit selection, five daily preparations, original resume, cover letter on request, missing answers and consent, individual approval, safe submission/handoff, recovery, dashboard notifications and privacy. These extend US-04–10.
+See [Job Application Agent v1.2](job-application-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JA-US-01–08, covering explicit selection, five daily preparations, original resume, cover letter on request, missing answers and consent, individual approval, safe submission/handoff, recovery, dashboard notifications and privacy. These extend US-04–10.
