@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-Version: 1.0 | Date: 2026-11-25 | Status: records accepted Days 1–6 design decisions; validation remains pending.
+Version: 1.0 | Date: 2026-11-25 | Status: all 12 ADRs explicitly approved by owner on 2026-11-25; feasibility validation remains pending.
 
 ADRs explain context, decision, alternatives, consequences, validation and revisit conditions. Accepted means approved design intent, not tested capability or spend approval. Unresolved feasibility is tracked in the [implementation backlog](../07-planning/implementation-backlog.md). Keep history: supersede an accepted ADR when a material change is approved rather than silently rewriting the original.
 
@@ -19,4 +19,4 @@ ADRs explain context, decision, alternatives, consequences, validation and revis
 | [ADR-011](ADR-011-region-and-delivery.md) | Canada Central and reproducible AWS delivery |
 | [ADR-012](ADR-012-defer-memory-and-rag.md) | Defer AgentCore Memory and dedicated RAG |
 
-Day 7 review: [CA-007](https://github.com/palamsaiteja333/career-autopilot/issues/7). No implementation code.
+Day 7 approval recorded: [CA-007](https://github.com/palamsaiteja333/career-autopilot/issues/7). No implementation code.
