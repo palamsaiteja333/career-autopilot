@@ -1,6 +1,6 @@
 # CareerAutopilot — High-Level Design (HLD)
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed architecture for owner review; no implementation
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved architecture baseline, subject to feasibility validation; no implementation
 Parent: [PRD](../01-product/product-requirements.md), [NFR v1.0](../01-product/non-functional-requirements.md), [evaluation plan](../01-product/evaluation-plan.md), [CA-004](https://github.com/palamsaiteja333/career-autopilot/issues/4)
 
 ## 1. Drivers and boundaries
@@ -9,7 +9,7 @@ Single authenticated owner, 30 scheduled + 10 manual searches and 30 application
 
 ## 2. Architecture style and component diagram
 
-Recommendation: modular monolith at source-code/domain level, separate deployed API, orchestration runtime and narrow tool adapters. Serverless control plane and event-driven execution. LangGraph controls workflow transitions; AWS infrastructure transports commands and executes bounded segments. No additional LLM supervisor for two known workflows.
+Approved approach: modular monolith at source-code/domain level, separate deployed API, orchestration runtime and narrow tool adapters. Serverless control plane and event-driven execution. LangGraph controls workflow transitions; AWS infrastructure transports commands and executes bounded segments. No additional LLM supervisor for two known workflows.
 
 ```mermaid
 flowchart TD
@@ -53,7 +53,7 @@ IAM, encryption, secrets, budget controls, deployment and audit are cross-cuttin
 
 ## 3. Service choices and alternatives
 
-| Concern | Proposed MVP | Alternatives / trade-off |
+| Concern | Approved MVP baseline | Alternatives / trade-off |
 |---|---|---|
 | Dashboard | React/TypeScript, S3 + CloudFront | No always-on frontend server; use private S3 origin. |
 | Identity | Cognito user pool + HTTP API JWT authorizer | Custom auth unnecessary; validate issuer, audience/client and scopes; enforce owner again in FastAPI. |
@@ -147,7 +147,7 @@ Business state: candidate identity/preferences/verified answer provenance, job/s
 - Candidate data stays in private stores; send minimum necessary data to approved Bedrock processing only, validate residency and no unintended logging. Never send profile data to discovery providers.
 - Submission tool checks server-side approval/ledger, not model text. Mock and live credentials separated; live adapter disabled. AgentCore Policy can add defense in depth if available/appropriate, not replace deterministic checks.
 - Prefer managed public AWS endpoints secured by IAM/TLS for initial low-cost design; no unnecessary VPC/NAT. Evaluate private networking if threat model requires it. No public database/storage access; no broad outbound proxy.
-- Verify service/feature/model regional availability and data-processing paths before real private data. Canada Central (ca-central-1) is proposed; do not silently use cross-region/global inference for private data. AWS documentation lists AgentCore regional support and cross-region behavior for selected features. Region, data residency and threat model sign-off remain gates.
+- Verify service/feature/model regional availability and data-processing paths before real private data. Canada Central (ca-central-1) is the approved preferred region, conditional on feasibility; do not silently use cross-region/global inference for private data. AWS documentation lists AgentCore regional support and cross-region behavior for selected features. Region, data residency and threat model sign-off remain gates.
 
 ## 8. Observability and failure handling
 
@@ -178,9 +178,24 @@ Stage 2: deploy thin API/control plane and durable state, queue/outbox, AgentCor
 Stage 3: integrate permitted discovery sources, scheduled runs, dashboard and human review; validate privacy and quality gates before real candidate data.
 Stage 4: mock ATS release, fault injection, backup restore, cost alarms, operational runbook; enable any live adapter only after separate authorization and release approval.
 
-Open choices for review/ADR: Lambda vs Fargate for API, AgentCore vs Lambda graph execution, checkpointer integration compatibility and recoverable transition protocol, DynamoDB vs relational storage, exact model and search provider, region and residency, deployment isolation, notification delivery for discovery and approval expiry. Retention and quality targets already approved; implementation details remain open. No code, CDK stacks, paid services or live submissions authorized by HLD.
+Approved choices: Lambda + API Gateway for FastAPI, AgentCore Runtime for LangGraph, DynamoDB + S3 persistence, Canada Central as preferred region, defer AgentCore Memory and dedicated RAG until required. All other proposed architecture choices accepted subject to feasibility. Alternatives and rationale are retained in section 3. Open validation gates: checkpointer compatibility and recoverable transition protocol, exact model and licensed search provider, regional feature availability and data residency, regional pricing against USD 50/month, deployment isolation, discovery notification delivery and approval expiry. If a gate fails, record an ADR and obtain approval for material deviations; do not silently change region, budget or safety. No code, CDK stacks, paid services or live submissions authorized by HLD.
 
-## 11. References (reviewed 2026-11-25)
+## 11. Decision register (approved 2026-11-25)
+
+| Decision | Accepted choice | Rationale / trade-off |
+|---|---|---|
+| HLD-D01 | FastAPI on Lambda + API Gateway | Low idle cost; validate cold starts and p95; Fargate remains alternative. |
+| HLD-D02 | LangGraph on AgentCore Runtime | Managed agent infrastructure; validate invocation and persistence, retain bounded Lambda fallback subject to review. |
+| HLD-D03 | DynamoDB + S3 | On-demand key-based state and private objects; explicit consistency and restore protocols needed. |
+| HLD-D04 | Canada Central | Preferred region; verify model and feature support, actual processing region and price. |
+| HLD-D05 | Defer AgentCore Memory and dedicated RAG | Verified profile and checkpoints suffice; reconsider when concrete retrieval/recall needs arise. |
+| HLD-D06 | Transactional outbox, SQS, bounded segments, dashboard polling | Durable acceptance, replay-safe processing and lower complexity; at-least-once delivery requires fencing and reconciliation. |
+| HLD-D07 | MCP Gateway, reviewed skills, Bedrock Guardrails and independent authorization | Reusable tool contracts and layered protection; managed features do not replace business policy. |
+| HLD-D08 | CDK, GitHub OIDC, AWS-native telemetry | Reproducible deployment and traceability; privacy-safe instrumentation and budget limits required. |
+
+Formal ADRs follow in CA-007. Design completion is distinct from deployment readiness.
+
+## 12. References (reviewed 2026-11-25)
 
 - [AgentCore region support](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-regions.html) and [cross-region inference](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/cross-region-inference.html)
 - [AgentCore runtime lifecycle](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-lifecycle-settings.html), [quotas](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/bedrock-agentcore-limits.html), [MCP targets](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html)
