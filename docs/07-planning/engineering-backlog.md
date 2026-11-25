@@ -59,6 +59,7 @@ Labels: documentation
 
 - Write ADRs for orchestration, runtime, state, source integration, tool authorization and observability; capture alternatives and trade-offs.
 - Acceptance: implementation backlog is sequenced with dependencies and testable definitions of done.
+- [12 ADRs](../03-decisions/README.md) and [implementation backlog v0.1](implementation-backlog.md) committed. CA-007 remains open for owner review of the proposed delivery sequence; 32 planned implementation items, not yet separate GitHub issues.
 
 ## GitHub setup notes
 
