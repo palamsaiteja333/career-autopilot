@@ -19,8 +19,8 @@ Release testing should include happy paths, malformed source data, prompt inject
 
 ## Detailed discovery stories
 
-See [Job Search Agent v1.0](job-search-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JS-US-01–06, covering the agreed Canada-wide/remote, six-role, 48-hour, daily top-10 search defaults, incomplete coverage and privacy. These extend US-01–03, US-09 and US-10.
+See [Job Search Agent v1.1](job-search-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JS-US-01–06, covering the agreed Canada-wide/remote, six-role, 48-hour, daily top-10 search defaults, incomplete coverage and privacy. These extend US-01–03, US-09 and US-10.
 
 ## Detailed application stories
 
-See [Job Application Agent v1.0](job-application-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JA-US-01–08, covering explicit selection, five daily preparations, original resume, cover letter on request, missing answers and consent, individual approval, safe submission/handoff, recovery, dashboard notifications and privacy. These extend US-04–10.
+See [Job Application Agent v1.1](job-application-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JA-US-01–08, covering explicit selection, five daily preparations, original resume, cover letter on request, missing answers and consent, individual approval, safe submission/handoff, recovery, dashboard notifications and privacy. These extend US-04–10.
