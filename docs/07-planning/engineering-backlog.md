@@ -31,6 +31,7 @@ Labels: documentation
 
 - Set measurable latency, availability, cost, privacy, retention, RTO/RPO and evaluation targets based on intended workload.
 - Acceptance: define measurement boundaries, test datasets and release gates; do not invent achieved metrics.
+- Draft deliverables: [NFR v0.1](../01-product/non-functional-requirements.md) and [evaluation plan v0.1](../01-product/evaluation-plan.md). Owner review of numerical targets pending.
 
 ### [CA-004 — Design high-level architecture](https://github.com/palamsaiteja333/career-autopilot/issues/4)
 Labels: documentation
@@ -58,4 +59,4 @@ Labels: documentation
 
 ## GitHub setup notes
 
-The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues are open for review and implementation planning. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
+The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002 is closed and CA-003 has draft deliverables pending target review. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
