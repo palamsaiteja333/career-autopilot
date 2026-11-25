@@ -1,0 +1,52 @@
+# Product requirements document (PRD)
+
+Version: 0.1 | Date: 2026-11-25 | Status: initial design baseline, pending review of provisional targets and integration feasibility
+
+## 1. Objective
+Reduce repetitive job search and application work without sacrificing relevance, accuracy, privacy or user control. Build an extensible platform for future career agents and an end-to-end engineering learning case study.
+
+## 2. Users and jobs to be done
+Initial user: an individual technical job seeker. When searching, find active opportunities matching role, location and work arrangement. When applying, reuse verified information, prepare accurate materials, ask for missing answers and track the outcome. When returning after an interruption, resume safely without losing work.
+
+## 3. MVP scope
+
+### Discovery
+Accept natural-language and structured preferences; search permitted sources on demand and on a configurable schedule; normalize postings and preserve provenance, location, remote eligibility, timestamps and original links; deduplicate; assess relevance against the candidate profile with evidence; rank results; flag unavailable or unverified postings; display and notify about results.
+
+### Candidate profile
+Allow the user to upload and version resumes and maintain verified experience, preferences and approved answers. Store answer provenance and scope. Unknown, expired or sensitive answers must not be inferred. The user can update or delete profile information.
+
+### Application assistance
+Select a job, prepare truthful resume and cover letter variants, map supported form questions to candidate facts, identify required unknowns, pause for input, validate completeness, show exact materials and destination for approval, and allow rejection/cancellation. Submit only through an authorized integration after explicit approval; otherwise provide a complete manual handoff. Never mark a handoff as submitted without user confirmation or reliable evidence.
+
+### Workflow and dashboard
+Persist workflow state, pending approvals, search results and application status. Resume after service restarts, recover safely from tool/model failures, detect duplicate attempts and reconcile unknown external outcomes. Provide user-facing history, notifications and traceable decisions.
+
+## 4. Out of scope
+Unauthorized website automation, bulk unsolicited applications, CAPTCHA bypass, inferred legal/work eligibility, unapproved external submission, live LinkedIn messaging/posting, multi-user SaaS, mobile apps and unrelated personal agents. Mock ATS automation is in scope for learning and testing; live submission is conditional on access and permission.
+
+## 5. Proposed release targets
+
+| Measure | Proposed target and method |
+|---|---|
+| Relevance | >=80% precision@10 on user-reviewed search results; report sample size and missing results separately. |
+| Effort reduction | >=70% reduction in active discovery time against a measured manual baseline across comparable searches. |
+| Field accuracy | >=90% correct supported fields with verified available answers, measured against labeled mock ATS cases. |
+| Mandatory unknowns | 100% escalation in acceptance cases. |
+| Truthfulness | Zero unsupported candidate claims in release evaluation cases. |
+| Approval | 100% of external submissions have valid approval for exact destination and payload version in tests. |
+| Duplicate submissions | Zero duplicates in retry/crash/concurrent approval tests; ambiguous external responses require reconciliation. |
+
+These are provisional targets, not achieved results or production guarantees. Define datasets, coverage and performance budgets during non-functional design. Safety invariants are release blockers even when the aggregate accuracy target is met.
+
+## 6. Risks and constraints
+Source permissions and geographic eligibility can be ambiguous. Job descriptions are untrusted and may contain prompt injections. External systems can change forms or return ambiguous responses. Model costs, latency, regional availability, retention and personally identifiable information must be managed. Public GitHub stores synthetic data only.
+
+## 7. Open decisions
+Choose first authorized source adapters, notification channel, search cadence, data retention/deletion policy, cost ceiling, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
+
+## 8. Future roadmap
+Networking and recruiter communication, professional branding/content, interview preparation and career intelligence. Keep extension interfaces generic but defer new agents until the MVP is measured and reliable.
+
+## 9. Release criteria
+Discovery and mock/assisted application workflow pass end-to-end and adversarial acceptance tests. Human approval and restart recovery are demonstrated. The deployed environment has authentication, least privilege, privacy-safe monitoring, cost alarms and an operational runbook. Unsupported live integrations remain disabled.
