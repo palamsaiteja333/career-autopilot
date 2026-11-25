@@ -1,6 +1,6 @@
 # Low-Level Design (LLD) — workflow contracts and shared services
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed for owner review, no implementation
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved design baseline, subject to feasibility testing; no implementation
 Parent: [HLD v1.0](high-level-design.md) · [Agent workflows](agent-workflows.md) · [NFR](../01-product/non-functional-requirements.md) · [Evaluation plan](../01-product/evaluation-plan.md) · [CA-005](https://github.com/palamsaiteja333/career-autopilot/issues/5)
 
 ## 1. Module boundaries
@@ -94,7 +94,7 @@ LangGraph interrupts can replay their node from the beginning; make pre-interrup
 | FAILED | DRAFT or AWAITING_APPROVAL | Safe explicitly retriable case; new approval where needed |
 | SUBMITTED / REJECTED / CANCELLED | Terminal for this workflow | New attempt requires deliberate policy-reviewed path; submitted duplicate blocked |
 
-Approval record binds owner, application/job, destination and form version, reviewed payload version and canonical manifest hash, original resume and letter hashes, approval timestamp/expiry, decision and revocation version. Server derives manifest, not model or client. Proposed approval expiry 24 hours (review needed). Any material change or expired/revoked approval invalidates. Re-read job/form/policy before send. Before network action, submit adapter atomically checks approval, cancellation and current versions, reserves one attempt and transitions to in-flight; this is the last cancellable boundary. An in-flight attempt uses provider idempotency if supported; otherwise one send attempt, unknown outcome on ambiguity. If process crashes after marking in-flight but before external request, uncertainty is still reconciled rather than assuming no send. User must see UNKNOWN and any evidence. External exactly-once is not guaranteed. Never provide a generic retry button for an unknown send.
+Approval record binds owner, application/job, destination and form version, reviewed payload version and canonical manifest hash, original resume and letter hashes, approval timestamp/expiry, decision and revocation version. Server derives manifest, not model or client. Approved approval expiry: 24 elapsed hours from explicit approval. Any material change or expired/revoked approval invalidates. Re-read job/form/policy before send. Before network action, submit adapter atomically checks approval, cancellation and current versions, reserves one attempt and transitions to in-flight; this is the last cancellable boundary. An in-flight attempt uses provider idempotency if supported; otherwise one send attempt, unknown outcome on ambiguity. If process crashes after marking in-flight but before external request, uncertainty is still reconciled rather than assuming no send. User must see UNKNOWN and any evidence. External exactly-once is not guaranteed. Never provide a generic retry button for an unknown send.
 
 ## 6. MCP contracts (logical tool names, not schemas or deployed endpoints)
 
@@ -124,7 +124,7 @@ No arbitrary HTTP, browser control, shell, direct database writes, raw profile e
 | BUDGET_EXCEEDED / CANCELLED | Stop optional work; preserve status and recovery |
 | UNKNOWN_OUTCOME | Reconcile; never auto-retry external action |
 
-Proposed retry policy: up to 2 retry attempts after initial transient read call (3 total), capped jittered backoff and provider Retry-After; stop early on budget/deadline. Model malformed output gets one schema-correction attempt, then unresolved/visible failure; no endless agent loop. Source timeouts, concurrency and token limits benchmarked in staging.
+Approved retry policy: up to 2 retry attempts after initial transient read call (3 total), capped jittered backoff and provider Retry-After; stop early on budget/deadline. Model malformed output gets one schema-correction attempt, then unresolved/visible failure; no endless agent loop. Source timeouts, concurrency and token limits benchmarked in staging.
 
 ## 7. Skills and model invocation
 
@@ -154,6 +154,6 @@ Instrument request acceptance, outbox publish, queue dispatch, graph node, model
 
 ## 9. Open decisions and references
 
-Proposed details requiring review: API route naming, node/state schemas, model batch ceilings, approval expiry 24h, transient retry count, local mock strategy, MCP topology and checkpoint fencing mechanism. Exact DynamoDB keys/access patterns/transactions, backup/deletion and threat model follow CA-006. Source catalog, licensed search, actual model and pricing, AgentCore invocation/checkpointer compatibility and region are feasibility gates. No implementation, API schema, actual tool calls, model calls or test results yet.
+Approved on 2026-11-25: node and state contracts, REST interfaces, skill and MCP boundaries, independent guardrails, recovery design, 24-hour individual approval expiry, two retries after the initial transient read-only call, and initial LLM batches of up to 10 jobs / 15 questions. All other proposed details accepted subject to feasibility testing. Exact DynamoDB keys/access patterns/transactions, backup/deletion and threat model follow CA-006. Checkpoint fencing, source catalog, licensed search, actual model and pricing, AgentCore invocation/checkpointer compatibility and region remain validation gates. No implementation, API schema, actual tool calls, model calls or test results yet.
 
 References: [LangGraph interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts), [durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution), [graph API](https://docs.langchain.com/oss/python/langgraph/graph-api), [AgentCore Gateway MCP targets](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html), [AgentCore overview](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/), [Agent Skills](https://agentskills.io/specification). Framework capabilities do not imply this proposed design has been tested.
