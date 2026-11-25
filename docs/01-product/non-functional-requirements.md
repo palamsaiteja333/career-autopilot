@@ -53,6 +53,8 @@ Illustrative planning arithmetic, not a price quote: 40 discovery runs x USD 0.2
 
 ## 5. Release gates and open decisions
 
+Day 6 clarification: optional MFA, AWS default encryption at rest and short-lived signed document URLs with validated immediate revocation. See [security design](../04-security/threat-model.md). The 30-day backup maximum remains unchanged; managed PITR deletion backup behavior and signed URL revocation are deployment gates, not accepted exceptions.
+
 See [evaluation plan](evaluation-plan.md) for AI quality and safety metrics. Performance, availability, cost and recovery objectives are owner-approved design targets, not verified capabilities. Safety invariants are mandatory, not relaxed by average quality. If a target is missed, investigate, record evidence and either fix or obtain explicit documented acceptance for a revised non-safety target before release.
 
-Open decisions: schedule anchor time, discovery notification channel, source coverage/pagination, model selection, regional data handling, implementation of approved retention and deletion policy, approval expiry, actual hosting costs, backup/recovery design and telemetry sampling. No infrastructure or SLA is created by this specification.
+Open decisions: schedule anchor time, discovery notification channel, source coverage/pagination, model selection, regional data handling, implementation of approved retention and deletion policy, actual hosting costs, backup/recovery design and telemetry sampling. No infrastructure or SLA is created by this specification.
