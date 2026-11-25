@@ -37,6 +37,8 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 | [Low-level design](docs/02-architecture/low-level-design.md) | v1.0; approved, feasibility pending |
 | [Data model and persistence](docs/02-architecture/data-model.md) | v1.0; approved, feasibility pending |
 | [Security and threat model](docs/04-security/threat-model.md) | v1.0; approved, feasibility pending |
+| [Architecture Decision Records](docs/03-decisions/README.md) | v1.0; 12 accepted decisions, feasibility pending |
+| [Implementation backlog](docs/07-planning/implementation-backlog.md) | v0.1; 32 work items, review pending |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Issues created; native milestones pending |
 
 ## Development principles
