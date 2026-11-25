@@ -193,7 +193,7 @@ Approved choices: Lambda + API Gateway for FastAPI, AgentCore Runtime for LangGr
 | HLD-D07 | MCP Gateway, reviewed skills, Bedrock Guardrails and independent authorization | Reusable tool contracts and layered protection; managed features do not replace business policy. |
 | HLD-D08 | CDK, GitHub OIDC, AWS-native telemetry | Reproducible deployment and traceability; privacy-safe instrumentation and budget limits required. |
 
-Formal ADRs follow in CA-007. Design completion is distinct from deployment readiness.
+Formal [ADRs](../03-decisions/README.md) record these decisions; see the [implementation backlog](../07-planning/implementation-backlog.md) for validation and release gates. Design completion is distinct from deployment readiness.
 
 ## 12. References (reviewed 2026-11-25)
 
