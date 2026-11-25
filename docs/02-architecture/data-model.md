@@ -1,6 +1,6 @@
 # CareerAutopilot — Data model and persistence
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed Day 6 design; owner review and feasibility testing pending
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved design baseline; feasibility testing pending
 Parent: [HLD v1.0](high-level-design.md) · [LLD v1.0](low-level-design.md) · [Agent workflows v1.0](agent-workflows.md) · [NFR](../01-product/non-functional-requirements.md) · [Threat model](../04-security/threat-model.md) · [CA-006](https://github.com/palamsaiteja333/career-autopilot/issues/6)
 
 ## 1. Design goals
@@ -34,7 +34,7 @@ erDiagram
 
 Relationships are logical: DynamoDB does not enforce foreign keys. Domain services enforce ownership, references, uniqueness and lifecycle invariants in transactions/conditional writes. One application per owner and canonical requisition in MVP; reopen/resume same draft when safe. Job aliases map provider IDs/canonical URLs to stable internal job IDs; ambiguous dedup does not merge silently.
 
-## 3. Proposed table strategy
+## 3. Approved table strategy
 
 Five logical DynamoDB tables per deployed environment, all on-demand initially. Actual resource count and names depend on checkpointer library requirements and cost/security validation. Multi-table design favors privilege separation and independent lifecycle over a single-table layout; use composite keys inside each domain. All keys use opaque IDs (no names, email, resume text, raw URL or applicant answers). Prefix examples are illustrative.
 
@@ -147,7 +147,7 @@ Separate private buckets/prefix boundaries for candidate documents, checkpoint a
 - checkpoints/owner/<opaque-owner>/thread/<thread-id>/<checkpoint-id>/<artifact-id>
 - quarantine/owner/<opaque-owner>/<upload-id>
 
-Use S3 versioning, block public access, TLS-only, SSE-KMS for sensitive private storage subject to regional cost/permission validation; separate key grants by service boundary and environment. UI bucket has no candidate data. Upload uses short-lived scoped URL with expected constraints, quarantine until validation/scan, record trusted server-verified checksum, object version and content type. Do not trust filename, client-provided type or ETag as content hash. Approved original is logically immutable; create a new version rather than overwrite. Prefer an authenticated read broker for private document downloads, with owner/deletion checks before each retrieval and bounded transfers. Short-lived upload intents (proposed <=5 minutes) target quarantine only. Already-issued upload URLs may remain valid until expiry; refuse late confirmation after deletion, purge late uploads and verify cleanup. If direct signed downloads are later introduced, demonstrate immediate revocation or explicitly review the policy trade-off before live use.
+Use S3 versioning, block public access, TLS-only, AWS default encryption at rest (SSE-S3 for S3; AWS-owned key for DynamoDB); separate service roles and resource policies by boundary and environment; customer-managed KMS keys deferred unless a validated requirement arises. UI bucket has no candidate data. Upload uses short-lived scoped URL with expected constraints, quarantine until validation/scan, record trusted server-verified checksum, object version and content type. Do not trust filename, client-provided type or ETag as content hash. Approved original is logically immutable; create a new version rather than overwrite. Approved private access: short-lived presigned URLs (maximum five minutes initially), issued only after owner, document version and deletion-generation checks. Scope temporary signing credentials and S3 policy to the exact object/version and action; use TLS, signature-age limits, no public access or caching, and redact URLs. Presigned URLs are bearer capabilities: a database tombstone or short expiry alone cannot revoke them. Validate object/version-specific explicit deny or permission revocation (including old versions and concurrent requests) before enabling private downloads. Block new issuance immediately on deletion; verify outstanding URLs fail after revocation. If this cannot meet immediate retrieval revocation, keep direct private downloads disabled and seek owner review of an authenticated broker or other compliant design; no silent five-minute exception. Already downloaded content or an in-progress transfer cannot be recalled. Upload intents target quarantine only; deny late confirmation after deletion and purge late uploads.
 
 ## 9. Retention, deletion and disaster restore
 
@@ -159,8 +159,10 @@ Deletion journal must remain authoritative independently of ordinary data restor
 
 ## 10. Validation and references
 
+Owner decision 2026-11-25: preserve maximum 30-day backup retention without exception. See [AWS presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html), [revocation FAQ](https://docs.aws.amazon.com/prescriptive-guidance/latest/presigned-url-best-practices/faq.html), [S3 default encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html) and [DynamoDB encryption](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html).
+
 Tests: key/access pattern walkthrough, consistent reads, simultaneous sixth application, duplicate selection and request mismatch, DST rollover, changed approval and concurrent cancel/send, unknown send recovery, checkpoint fencing, GSI lag, deletion during run, expired TTL item still present, S3 version purge, restore with old deleted data and audit integrity. Validate actual library/schema, IAM, storage/backup pricing and regional feasibility before implementation release.
 
 References (AWS docs checked 2026-11-25): [DynamoDB constraints](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Constraints.html), [transactions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html), [TTL](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html), [expired item handling](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ttl-expired-items.html), [PITR and system backups](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery_Howitworks.html), [S3 version deletion](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html).
 
-No tables, keys, buckets, real data or infrastructure have been created. Five-table design, index layout, encryption key topology, URL expiry and deletion implementation are proposed, not measured or legally certified.
+No tables, keys, buckets, real data or infrastructure have been created. Five logical tables, default encryption, short-lived presigned access with validated revocation, and remaining data design are approved subject to feasibility. Revocation, backup retention (including PITR table deletion), IAM, checkpoint fencing and deletion/restore drills remain blocking validation gates for real data. No measured or legally certified controls.
