@@ -1,6 +1,6 @@
 # Agent workflows and lifecycles
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed low-level design; not implemented
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved design baseline, subject to feasibility testing; not implemented
 Parent: [HLD v1.0](high-level-design.md) · [LLD](low-level-design.md) · [Job Search](../01-product/job-search-agent-requirements.md) · [Job Application](../01-product/job-application-agent-requirements.md) · [CA-005](https://github.com/palamsaiteja333/career-autopilot/issues/5)
 
 ## 1. Execution model
@@ -52,7 +52,7 @@ All-source failure is FAILED; partial coverage is PARTIAL even if zero ranked re
 
 ### Model and tool call plan
 
-Scheduled search has zero interpretation call; manual natural language has at most one successful criteria-extraction call (bounded correction on invalid output). Ambiguous eligibility evidence may need batched extraction; only source-supported evidence can pass hard filters. Fit assessment uses batches of up to 10 verified candidates initially, up to 100 normalized candidates inspected per run across sources. Proposed cap: 10 fit batches, 10 evidence batches, 1 criteria extraction plus bounded correction attempts within shared token/time/cost caps; these are ceilings, not expected call counts or entitlements to spend. Do not rank candidates whose assessment failed as verified fit; record incomplete coverage. No model is called for quotas, date arithmetic, dedup, sorting, persistence, retries or authorization. Test batch size, evidence extraction and pricing before release.
+Scheduled search has zero interpretation call; manual natural language has at most one successful criteria-extraction call (bounded correction on invalid output). Ambiguous eligibility evidence may need batched extraction; only source-supported evidence can pass hard filters. Fit assessment uses batches of up to 10 verified candidates initially, up to 100 normalized candidates inspected per run across sources. Approved initial cap: 10 fit batches, 10 evidence batches, 1 criteria extraction plus bounded correction attempts within shared token/time/cost caps; these are ceilings, not expected call counts or entitlements to spend. Do not rank candidates whose assessment failed as verified fit; record incomplete coverage. No model is called for quotas, date arithmetic, dedup, sorting, persistence, retries or authorization. Test batch size, evidence extraction and pricing before release.
 
 Example synthetic run: scheduled search → four source categories attempted → 60 raw observations → 45 unique → 18 pass hard filters/link checks → two fit batches → 10 ranked jobs, with exclusions and source coverage persisted. Numbers are illustrative only.
 
@@ -112,7 +112,7 @@ Cancel is checked before every mutating boundary and may end a pre-send workflow
 
 ### Model and tool call plan
 
-No model for selection, quota, resume retrieval/hash, exact field mapping, approvals, submission, cancellation, status transitions or retries. One structured mapping batch per up to 15 unresolved supported questions (proposed), maximum four batches per automated segment; split conditional form pages and checkpoint. Optional cover letter model call only on request, with evidence IDs and one bounded correction; never invent facts. A new human resume segment rechecks budgets, cancellation and current form, and may call the model again only for newly unresolved fields. Reuse checkpointed outputs when safe. Tool calls: fetch_job, inspect_application_form, optionally lookup_submission_status, and only after valid approval submit_approved_application. Original resume is retrieved internally, not via a broadly model-accessible tool.
+No model for selection, quota, resume retrieval/hash, exact field mapping, approvals, submission, cancellation, status transitions or retries. One structured mapping batch per up to 15 unresolved supported questions (approved initial batch), maximum four batches per automated segment; split conditional form pages and checkpoint. Optional cover letter model call only on request, with evidence IDs and one bounded correction; never invent facts. A new human resume segment rechecks budgets, cancellation and current form, and may call the model again only for newly unresolved fields. Reuse checkpointed outputs when safe. Tool calls: fetch_job, inspect_application_form, optionally lookup_submission_status, and only after valid approval submit_approved_application. Original resume is retrieved internally, not via a broadly model-accessible tool.
 
 ### Example and failure scenarios
 
@@ -140,4 +140,4 @@ StateGraph nodes receive state and return partial state updates; edges encode de
 - [AgentCore overview](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/)
 - [Agent Skills specification](https://agentskills.io/specification)
 
-No implementation, actual model calls, live tools or measured performance. Node IDs and call caps are proposed design decisions for review.
+No implementation, actual model calls, live tools or measured performance. Node IDs, initial batch sizes (10 jobs / 15 questions) and call caps are approved design decisions subject to feasibility testing. Approval expires after 24 elapsed hours; transient read-only tools allow two retries after the initial attempt.
