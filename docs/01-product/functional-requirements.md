@@ -25,7 +25,7 @@ Version 0.3 | Both MVP agent specifications finalized; technical design pending 
 
 ## Detailed agent requirements
 
-- [Job Search Agent v1.0](job-search-agent-requirements.md): agreed defaults, JS-001–016, evidence and eligibility rules, result contract and acceptance scenarios. Extends FR-002–007, FR-015–018.
-- [Job Application Agent v1.0](job-application-agent-requirements.md): agreed defaults, JA-001–020, consent, quota, approval, handoff and recovery rules, and acceptance scenarios. Extends FR-001–002, FR-008–018.
+- [Job Search Agent v1.1](job-search-agent-requirements.md): agreed defaults, JS-001–016, evidence and eligibility rules, result contract and acceptance scenarios. Extends FR-002–007, FR-015–018.
+- [Job Application Agent v1.1](job-application-agent-requirements.md): agreed defaults, JA-001–020, consent, quota, approval, handoff and recovery rules, and acceptance scenarios. Extends FR-001–002, FR-008–018.
 
-Next: define measurable non-functional targets and evaluation plan, then design APIs and state transitions.
+Approved [NFR v1.0](non-functional-requirements.md) and [evaluation plan v1.0](evaluation-plan.md). Next: review [high-level design v0.1](../02-architecture/high-level-design.md), then design APIs and state transitions.
