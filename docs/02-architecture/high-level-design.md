@@ -49,7 +49,7 @@ flowchart TD
   GW -.-> OBS
 ```
 
-IAM, encryption, secrets, budget controls, deployment and audit are cross-cutting. Arrows represent logical flows, not network topology. Browser access is optional, permitted-only; no external account is accessed by default. Candidate documents are never in the public frontend bucket. Frontend uses private S3 origin access, HTTPS, Cognito sign-in with authorization code + PKCE, and authenticated API calls; self-registration disabled for MVP. Signed, short-lived document transfer URLs may be used after ownership checks, with upload size/type validation and quarantine/scan before use.
+IAM, encryption, secrets, budget controls, deployment and audit are cross-cutting. Arrows represent logical flows, not network topology. Browser access is optional, permitted-only; no external account is accessed by default. Candidate documents are never in the public frontend bucket. Frontend uses private S3 origin access, HTTPS, Cognito sign-in with authorization code + PKCE, and authenticated API calls; self-registration disabled for MVP. Optional MFA; default AWS encryption (SSE-S3 and DynamoDB AWS-owned keys). Short-lived signed document URLs require ownership checks, validated revocation before private download release, upload validation and quarantine.
 
 ## 3. Service choices and alternatives
 
@@ -137,7 +137,7 @@ A graph interrupt is persisted before ending the segment, not a sleeping process
 
 ## 6. Logical data boundaries
 
-Business state: candidate identity/preferences/verified answer provenance, job/source identity, run status, application status/quota, approval and submission ledger, notifications and outbox. Graph checkpoint: execution position, pending interrupt and bounded references, separate from authoritative approval ledger. Private object storage: original immutable versioned resume, requested cover letter and large artifacts; owner-scoped access and deletion tracking. Queue: identifiers and versions, not raw resume/answers. Audit/telemetry: opaque IDs, timings and outcomes, no raw private payloads. Avoid copying full candidate information into each checkpoint; redact/minimize data and enforce approved retention including offloaded artifacts and backups. See [data model v0.1](data-model.md) and [threat model v0.1](../04-security/threat-model.md) for proposed access patterns, deletion strategy, recovery protocol and trust boundaries (CA-006 review pending).
+Business state: candidate identity/preferences/verified answer provenance, job/source identity, run status, application status/quota, approval and submission ledger, notifications and outbox. Graph checkpoint: execution position, pending interrupt and bounded references, separate from authoritative approval ledger. Private object storage: original immutable versioned resume, requested cover letter and large artifacts; owner-scoped access and deletion tracking. Queue: identifiers and versions, not raw resume/answers. Audit/telemetry: opaque IDs, timings and outcomes, no raw private payloads. Avoid copying full candidate information into each checkpoint; redact/minimize data and enforce approved retention including offloaded artifacts and backups. See [data model v1.0](data-model.md) and [threat model v1.0](../04-security/threat-model.md) for approved access patterns, deletion strategy, recovery protocol and trust boundaries; feasibility remains pending.
 
 ## 7. Trust boundaries and guardrails
 
