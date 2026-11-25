@@ -59,8 +59,8 @@ Labels: documentation
 
 - Write ADRs for orchestration, runtime, state, source integration, tool authorization and observability; capture alternatives and trade-offs.
 - Acceptance: implementation backlog is sequenced with dependencies and testable definitions of done.
-- [12 ADRs](../03-decisions/README.md) and [implementation backlog v0.1](implementation-backlog.md) committed. CA-007 remains open for owner review of the proposed delivery sequence; 32 planned implementation items, not yet separate GitHub issues.
+- [12 ADRs](../03-decisions/README.md) and [implementation backlog v1.0](implementation-backlog.md) committed. CA-007 owner review complete; 32 approved implementation items, with Week 2 tracked in #8–#13.
 
 ## GitHub setup notes
 
-The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002 through CA-006 are closed; CA-007 architecture decisions and implementation backlog is the current activity. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
+The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-001 through CA-007 design review complete; Week 2 issues #8–#13 track engineering foundations. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Initial documentation reviewed and approved. Native milestones remain pending. No real candidate information belongs in issues, docs or fixtures.
