@@ -1,6 +1,6 @@
 # User stories and acceptance scenarios
 
-Draft v0.1. All examples are synthetic.
+v0.2. Job Search Agent stories expanded; remaining stories draft. All examples are synthetic.
 
 | Story | As a candidate, I want... | Acceptance scenarios | Requirements |
 |---|---|---|---|
@@ -16,3 +16,7 @@ Draft v0.1. All examples are synthetic.
 | US-10 | To understand and debug the system. | Given a failed tool call, when viewing the workflow, the status and correlation ID identify the failure without exposing private content. | FR-017 |
 
 Release testing should include happy paths, malformed source data, prompt injection, missing answers, expired approvals, concurrent requests and crashes before/after external side effects.
+
+## Detailed discovery stories
+
+See [Job Search Agent v1.0](job-search-agent-requirements.md#6-user-stories-and-acceptance-scenarios) for JS-US-01–06, covering the agreed Canada-wide/remote, six-role, 48-hour, daily top-10 search defaults, incomplete coverage and privacy. These extend US-01–03, US-09 and US-10.
