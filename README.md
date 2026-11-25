@@ -25,13 +25,13 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 |---|---|
 | [Product vision](docs/01-product/product-vision.md) | Baseline |
 | [Market and competitive analysis](docs/01-product/competitive-analysis.md) | Initial research |
-| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.3 baseline; targets provisional |
+| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.4; approved design targets |
 | [Functional requirements](docs/01-product/functional-requirements.md) | v0.3; both agent defaults finalized |
 | [User stories](docs/01-product/user-stories.md) | v0.3; both agent story sets finalized |
-| [Job Search Agent requirements](docs/01-product/job-search-agent-requirements.md) | v1.0; agreed defaults |
-| [Job Application Agent requirements](docs/01-product/job-application-agent-requirements.md) | v1.0; agreed defaults |
-| [Non-functional requirements](docs/01-product/non-functional-requirements.md) | v0.1; proposed targets |
-| [AI evaluation plan](docs/01-product/evaluation-plan.md) | v0.1; proposed, not executed |
+| [Job Search Agent requirements](docs/01-product/job-search-agent-requirements.md) | v1.1; agreed defaults and timezone |
+| [Job Application Agent requirements](docs/01-product/job-application-agent-requirements.md) | v1.1; agreed defaults and timezone |
+| [Non-functional requirements](docs/01-product/non-functional-requirements.md) | v1.0; approved targets, unmeasured |
+| [AI evaluation plan](docs/01-product/evaluation-plan.md) | v1.0; approved, not executed |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Issues created; native milestones pending |
 
 ## Development principles
