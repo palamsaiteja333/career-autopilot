@@ -32,6 +32,7 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 | [Job Application Agent requirements](docs/01-product/job-application-agent-requirements.md) | v1.1; agreed defaults and timezone |
 | [Non-functional requirements](docs/01-product/non-functional-requirements.md) | v1.0; approved targets, unmeasured |
 | [AI evaluation plan](docs/01-product/evaluation-plan.md) | v1.0; approved, not executed |
+| [High-level architecture](docs/02-architecture/high-level-design.md) | v0.1; proposed for review |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Issues created; native milestones pending |
 
 ## Development principles
