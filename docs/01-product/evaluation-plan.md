@@ -1,6 +1,6 @@
 # AI evaluation and release validation plan
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed plan; no evaluation executed
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved plan; no evaluation executed
 
 Parent: [PRD](product-requirements.md) · [NFR](non-functional-requirements.md) · [Job Search Agent](job-search-agent-requirements.md) · [Job Application Agent](job-application-agent-requirements.md)
 
@@ -8,7 +8,7 @@ Parent: [PRD](product-requirements.md) · [NFR](non-functional-requirements.md) 
 
 Evaluate the entire workflow rather than only the LLM response. Separate deterministic correctness, model quality, tool behavior, security, human oversight and operational reliability. Use synthetic candidate profiles, resumes, questions and mock ATS data in public GitHub; no actual candidate data, credentials or private traces. Live discovery evaluation must use permitted access, private candidate data only in controlled environments, and sanitized aggregate reporting.
 
-## 2. Proposed initial golden datasets
+## 2. Approved initial golden dataset plan
 
 | Suite | Initial minimum | Coverage |
 |---|---:|---|
@@ -18,11 +18,11 @@ Evaluate the entire workflow rather than only the LLM response. Separate determi
 | Reliability | 15 scenarios | Duplicate events, concurrent requests, process crash before/after external send, timeout, unknown state, restore, cancellation and failed sources |
 | Operational | Reference workload plus saturation/restore drills | Latency, throughput, availability, usage, alerts, cost and RTO/RPO |
 
-Counts are proposed minima, not statistically representative or guarantees; scenarios can overlap in coverage but report unique counts. Label expected outputs, acceptable alternatives, evidence, source snapshot/time, severity and requirement IDs. Freeze a held-out regression split (proposed 20%, stratified where feasible), do not tune against it, version datasets and document changes. Include difficult negative cases, not just happy paths.
+Counts are approved planning minima, not statistically representative or guarantees; scenarios can overlap in coverage but report unique counts. Label expected outputs, acceptable alternatives, evidence, source snapshot/time, severity and requirement IDs. Freeze a held-out regression split (20%, stratified where feasible), do not tune against it, version datasets and document changes. Include difficult negative cases, not just happy paths.
 
 ## 3. Metrics and acceptance thresholds
 
-| ID | Metric | Proposed release criterion | Method |
+| ID | Metric | Approved release criterion | Method |
 |---|---|---|---|
 | EV-001 | Discovery relevance | >=80% mean precision@10 on candidate-reviewed scenarios with >=10 eligible relevant reference opportunities; report sample count. | Relevant returned jobs / 10 per applicable query; do not pad. For reference sets with fewer than 10, report precision among returned results, eligible recall and zero-result correctness separately. Also report returned counts and overall precision/coverage. |
 | EV-002 | Hard filters and links | 100% pass on labeled eligibility/freshness/active-link and deduplication safety cases. | Compare exact expected statuses and unique identities; unknowns cannot be promoted to verified results. |
