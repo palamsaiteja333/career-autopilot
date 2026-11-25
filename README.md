@@ -25,9 +25,10 @@ Python, FastAPI, Pydantic, LangGraph, MCP, versioned agent skills, Amazon Bedroc
 |---|---|
 | [Product vision](docs/01-product/product-vision.md) | Baseline |
 | [Market and competitive analysis](docs/01-product/competitive-analysis.md) | Initial research |
-| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.1 baseline; targets provisional |
-| [Functional requirements](docs/01-product/functional-requirements.md) | Draft |
-| [User stories](docs/01-product/user-stories.md) | Draft |
+| [Product requirements (PRD)](docs/01-product/product-requirements.md) | v0.2 baseline; targets provisional |
+| [Functional requirements](docs/01-product/functional-requirements.md) | v0.2; discovery defaults finalized |
+| [User stories](docs/01-product/user-stories.md) | v0.2; discovery stories expanded |
+| [Job Search Agent requirements](docs/01-product/job-search-agent-requirements.md) | v1.0; agreed defaults |
 | [Milestones and issue backlog](docs/07-planning/engineering-backlog.md) | Proposed |
 
 ## Development principles
