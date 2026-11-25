@@ -52,7 +52,7 @@ Labels: documentation
 
 - Identify access boundaries, profile/document versioning, job identity, workflow state, approval ledger, deletion and attack surfaces.
 - Acceptance: documented data ownership, encryption, authorization, privacy-safe telemetry and threat mitigations.
-- Draft deliverables: [data model v0.1](../02-architecture/data-model.md) and [threat model v0.1](../04-security/threat-model.md); owner review pending. Backup retention edge case, IAM, deletion and checkpoint fencing remain feasibility gates.
+- Approved deliverables: [data model v1.0](../02-architecture/data-model.md) and [threat model v1.0](../04-security/threat-model.md). Signed URL revocation, 30-day backup retention edge case, IAM, deletion and checkpoint fencing remain feasibility gates.
 
 ### [CA-007 — Record architecture decisions and prioritize implementation backlog](https://github.com/palamsaiteja333/career-autopilot/issues/7)
 Labels: documentation
@@ -62,4 +62,4 @@ Labels: documentation
 
 ## GitHub setup notes
 
-The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002 through CA-005 are closed; CA-006 data model and threat modeling is the current activity. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
+The personal public repository, MIT license, Python gitignore and initial documentation are present on `main`. The seven M1 issues have been created; CA-002 through CA-006 are closed; CA-007 architecture decisions and implementation backlog is the current activity. Create native milestone entries in Issues > Milestones and assign issues #1–#7 to M1. Leave CA-001 open until the documentation is reviewed. No real candidate information belongs in issues, docs or fixtures.
