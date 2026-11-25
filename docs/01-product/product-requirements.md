@@ -1,6 +1,6 @@
 # Product requirements document (PRD)
 
-Version: 0.4 | Date: 2026-11-25 | Status: approved requirements baseline; integration feasibility and measurement pending
+Version: 0.5 | Date: 2026-11-25 | Status: approved requirements baseline; integration feasibility and measurement pending
 
 ## 1. Objective
 Reduce repetitive job search and application work without sacrificing relevance, accuracy, privacy or user control. Build an extensible platform for future career agents and an end-to-end engineering learning case study.
@@ -21,7 +21,7 @@ Allow the user to upload and version resumes and maintain verified experience, p
 ### Application assistance
 Select a job explicitly, retrieve the original approved resume unchanged, generate a truthful cover letter only on request, map supported form questions to candidate facts, identify required unknowns, pause for input, validate completeness, show exact materials and destination for approval, and allow rejection/cancellation. Submit only through an authorized integration after explicit approval; otherwise provide a complete manual handoff. Never mark a handoff as submitted without user confirmation or reliable evidence.
 
-Agreed application defaults: user-selected jobs only, original resume, cover letter on request, ask for missing answers and offer consent-based reuse, individual approval, at most five new preparations per day, dashboard-only application notifications. See [Job Application Agent functional requirements](job-application-agent-requirements.md).
+Agreed application defaults: user-selected jobs only, original resume, cover letter on request, ask for missing answers and offer consent-based reuse, individual approval expiring after 24 elapsed hours, at most five new preparations per day, dashboard-only application notifications. See [Job Application Agent functional requirements](job-application-agent-requirements.md).
 
 ### Workflow and dashboard
 Persist workflow state, pending approvals, search results and application status. Resume after service restarts, recover safely from tool/model failures, detect duplicate attempts and reconcile unknown external outcomes. Provide user-facing history, notifications and traceable decisions.
@@ -47,7 +47,7 @@ These are approved design targets, not achieved results or production guarantees
 Source permissions and geographic eligibility can be ambiguous. Job descriptions are untrusted and may contain prompt injections. External systems can change forms or return ambiguous responses. Model costs, latency, regional availability, retention and personally identifiable information must be managed. Public GitHub stores synthetic data only.
 
 ## 7. Open decisions
-Choose first authorized source adapters, discovery notification channel, schedule anchor time, approval lifetime, answer scope and implementation of approved retention/deletion policy, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
+Choose first authorized source adapters, discovery notification channel, schedule anchor time, answer scope and implementation of approved retention/deletion policy, candidate schema and regional deployment. Confirm live submission permission before enabling any real adapter. Validate project-name availability before commercial branding.
 
 ## 8. Future roadmap
 Networking and recruiter communication, professional branding/content, interview preparation and career intelligence. Keep extension interfaces generic but defer new agents until the MVP is measured and reliable.
