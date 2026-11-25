@@ -1,11 +1,11 @@
 # CareerAutopilot — Implementation backlog and delivery plan
 
-Version: 0.1 | Date: 2026-11-25 | Status: proposed implementation sequence for owner review; no code or resources created
+Version: 1.0 | Date: 2026-11-25 | Status: owner-approved implementation sequence; local-first implementation authorized, paid AWS deployment not authorized
 Parent: [ADRs](../03-decisions/README.md) · [HLD v1.0](../02-architecture/high-level-design.md) · [LLD v1.0](../02-architecture/low-level-design.md) · [Data model](../02-architecture/data-model.md) · [Threat model](../04-security/threat-model.md) · [Engineering backlog](engineering-backlog.md)
 
 ## 1. Delivery strategy
 
-Documentation-first design completed through Day 6. Day 7 records the accepted design and proposes a dependency-ordered implementation plan. Week numbers are learning modules, not delivery commitments; scope or feasibility may require reordering. Single-owner, USD 50/month target, synthetic data by default. No implementation or cloud expenditure authorized here. P0 = MVP/release dependency; P1 = required supporting learning/quality deliverable or enhancement that can be sequenced after a P0 foundation; P2 = deferred, conditional future work. All referenced dependencies must have their stated acceptance evidence before dependent production release; synthetic stubs may allow parallel local learning with explicit gaps. A feasibility spike is a test, not a decision to deploy.
+Documentation-first design completed through Day 6. Day 7 records the accepted design and owner-approved dependency-ordered implementation plan. Week numbers are learning modules, not delivery commitments; scope or feasibility may require reordering. Single-owner, USD 50/month target, synthetic data by default. Local implementation is authorized; no paid AWS deployment or private data processing authorized. P0 = MVP/release dependency; P1 = required supporting learning/quality deliverable or enhancement that can be sequenced after a P0 foundation; P2 = deferred, conditional future work. All referenced dependencies must have their stated acceptance evidence before dependent production release; synthetic stubs may allow parallel local learning with explicit gaps. A feasibility spike is a test, not a decision to deploy.
 
 | Milestone | Weeks | Exit evidence |
 |---|---|---|
@@ -18,16 +18,16 @@ Documentation-first design completed through Day 6. Day 7 records the accepted d
 
 ## 2. Prioritized work items
 
-Stable IMP IDs are planning identifiers, not GitHub issue numbers. Create individual GitHub issues only after plan review or explicit request; no native milestone objects created by this document.
+Stable IMP IDs are planning identifiers, not GitHub issue numbers. Six Week 2 implementation issues have been created; later work items remain documented. No native milestone objects created by this document.
 
 | ID | Week | Priority | Work item | Depends on | Definition of done / acceptance evidence | Traceability |
 |---|---|---|---|---|---|---|
-| IMP-001 | 2 | P0 | Regional capability and cost feasibility matrix | None | Verify ca-central-1 features/models/processing paths, runtime/Gateway, CDK service limits and licensed-search cost against $50 target; record evidence, blockers and alternatives; no real candidate data or spend. | ADR-011; NFR-017 |
-| IMP-002 | 2 | P0 | Python workspace and repository foundations | None | Create approved Python/uv project, module boundaries, environment template, lint/type/test setup and synthetic fixtures; repeatable local setup, no secrets. | LLD §1; NFR-020 |
-| IMP-003 | 2 | P0 | CI quality and security checks | IMP-002 | PR runs lint/type/unit smoke, dependency/secret scans and synthetic fixtures; reviewed failures block merges; document protected branch and OIDC plan. | ADR-010,011; TM-14 |
-| IMP-004 | 2 | P0 | Typed domain contracts and deterministic policies | IMP-002 | Validate IDs, preferences, job schema, application states, timezone, quota rules, consent/approval manifest; unit tests cover unknown eligibility, DST, invalid transition. | FR-002–018; LLD §3 |
-| IMP-005 | 2 | P0 | FastAPI local control plane and identity boundary | IMP-004 | Health and versioned conceptual REST routes, dependency-injected repositories, synthetic authenticated owner and negative ownership tests; local mock auth never enabled in cloud. | LLD §2; NFR-011 |
-| IMP-006 | 2 | P0 | Local persistence and baseline tracing | IMP-004, IMP-005 | Durable local test adapters for state, commands and private document refs; correlation ID, redacted logs, OTel traces; restart smoke test. | ADR-004,010; NFR-007,015 |
+| [IMP-001](https://github.com/palamsaiteja333/career-autopilot/issues/8) | 2 | P0 | Regional capability and cost feasibility matrix | None | Verify ca-central-1 features/models/processing paths, runtime/Gateway, CDK service limits and licensed-search cost against $50 target; record evidence, blockers and alternatives; no real candidate data or spend. | ADR-011; NFR-017 |
+| [IMP-002](https://github.com/palamsaiteja333/career-autopilot/issues/9) | 2 | P0 | Python workspace and repository foundations | None | Create approved Python/uv project, module boundaries, environment template, lint/type/test setup and synthetic fixtures; repeatable local setup, no secrets. | LLD §1; NFR-020 |
+| [IMP-003](https://github.com/palamsaiteja333/career-autopilot/issues/10) | 2 | P0 | CI quality and security checks | IMP-002 | PR runs lint/type/unit smoke, dependency/secret scans and synthetic fixtures; reviewed failures block merges; document protected branch and OIDC plan. | ADR-010,011; TM-14 |
+| [IMP-004](https://github.com/palamsaiteja333/career-autopilot/issues/11) | 2 | P0 | Typed domain contracts and deterministic policies | IMP-002 | Validate IDs, preferences, job schema, application states, timezone, quota rules, consent/approval manifest; unit tests cover unknown eligibility, DST, invalid transition. | FR-002–018; LLD §3 |
+| [IMP-005](https://github.com/palamsaiteja333/career-autopilot/issues/12) | 2 | P0 | FastAPI local control plane and identity boundary | IMP-004 | Health and versioned conceptual REST routes, dependency-injected repositories, synthetic authenticated owner and negative ownership tests; local mock auth never enabled in cloud. | LLD §2; NFR-011 |
+| [IMP-006](https://github.com/palamsaiteja333/career-autopilot/issues/13) | 2 | P0 | Local persistence and baseline tracing | IMP-004, IMP-005 | Durable local test adapters for state, commands and private document refs; correlation ID, redacted logs, OTel traces; restart smoke test. | ADR-004,010; NFR-007,015 |
 | IMP-007 | 3 | P0 | Bedrock structured inference adapter | IMP-001, IMP-004, IMP-006 | Model selection benchmark plan; validate structured schema and one correction with mocks; permitted sandbox inference only after spend authorization; record region, model, tokens, costs. | ADR-005; EV-004,006 |
 | IMP-008 | 3 | P0 | Guardrails, model budgets and evaluation foundation | IMP-007 | Bound calls/tokens/time, label untrusted data, validate evidence and use canary redaction tests; initial versioned goldens, model evaluation harness and held-out split. | NFR-013,017,018; EV-001–010 |
 | IMP-009 | 3 | P0 | Checkpoint compatibility spike | IMP-001, IMP-006 | Prove LangGraph stable thread and interrupt resume across process restarts, and stale-writer exclusion on synthetic state; evaluate selected DynamoDB checkpointer in authorized sandbox before cloud release; document fallback if unsupported. | ADR-002,004; NFR-007 |
@@ -92,7 +92,7 @@ flowchart TD
 
 | Gate | Required evidence | If unmet |
 |---|---|---|
-| G0 Design review | ADRs and backlog reviewed; CA-001/007 status reconciled | Do not start implementation until explicit go-ahead |
+| G0 Design review | Passed for local implementation: owner approved all 12 ADRs and 32 items; design review completed | Paid deployment still requires separate approval |
 | G1 Regional/budget | Actual feature/model availability and residency, licensed search, estimated/observed pricing against USD 50; separate spend authorization | Keep mocks/local; propose revised ADR for material changes |
 | G2 Checkpoint/dispatch | Cross-invocation resume, stale-writer exclusion, durable acceptance/outbox and reconciliation tests | Do not enable external writes; validate alternative |
 | G3 Security/privacy | IAM, optional MFA/reauth, signed URL revocation for already issued URLs/versions, no PII leakage, deletion/restore and <=30-day backup retention (including PITR system backup) | Block real private data and affected functionality; no silent exceptions |
@@ -111,6 +111,6 @@ Every implementation issue includes requirement/ADR references, clear inputs/out
 - Signed URL revocation (expiry alone insufficient); immediate retrieval revoke remains mandatory.
 - DynamoDB PITR table deletion may retain a 35-day system backup; preserve approved 30-day maximum and validate compliant backup design.
 - Discovery notification channel and schedule anchor, scoring calibration, upload scanner, exact reauthentication and retention implementation.
-- Native GitHub milestones not yet created; CA-001 remains open for final product-doc review and CA-007 for Day 7 review. No implementation GitHub issues created yet.
+- Native GitHub milestones not yet created; CA-001 and CA-007 design review completed; six Week 2 issues #8–#13 created.
 
-This backlog is a proposed plan. Approval of prior design does not establish measured feasibility, authorize spend, or permit actual candidate-data processing or external job submissions.
+This backlog is an approved plan. Approval of prior design does not establish measured feasibility, authorize spend, or permit actual candidate-data processing or external job submissions.
